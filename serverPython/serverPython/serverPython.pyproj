@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9d231ba8-ae14-4b5d-b87c-054a3ecc7c6a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>serverPython.py</StartupFile>
+    <StartupFile>client.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="chat.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="client.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="serverPython.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

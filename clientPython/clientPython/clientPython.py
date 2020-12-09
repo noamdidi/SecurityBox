@@ -1,5 +1,6 @@
 # Import socket module 
 import socket 
+from mainwindow import MainWindow
 
 
 def Main(): 
@@ -16,11 +17,13 @@ def Main():
 
 	# message you send to server 
 	message = "hey its the client. im good"
+	#MainWin = MainWindow()
+	
 	while True: 
 
 		# message sent to server 
 		s.send(message.encode('ascii')) 
-
+		
 		# messaga received from server 
 		data = s.recv(1024) 
 
