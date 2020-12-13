@@ -1,5 +1,6 @@
 # Import socket module 
 import socket 
+from mainwindow import MainWindow
 
 def findingNetworks():
     print('list of all networks\n\n')
@@ -49,11 +50,23 @@ def Main():
 	# connect to server on local computer 
 	s.connect((host,port)) 
 
+<<<<<<< HEAD
 	while True:
 		# message sent to server
 		net = networksMenu()
 		message = net 
         s.send(message.encode('ascii'))
+=======
+	# message you send to server 
+	message = "hey its the client. im good"
+	#MainWin = MainWindow()
+	
+	while True: 
+
+		# message sent to server 
+		s.send(message.encode('ascii')) 
+		
+>>>>>>> 0db45d5cd4aa1937532c9454bcbec477b042be59
 		# messaga received from server 
 		data = s.recv(1024) 
 
