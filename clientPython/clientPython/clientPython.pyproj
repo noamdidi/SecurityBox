@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>82c442e3-bfd8-4b57-a3c4-9d45ef5c10c8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>clientPython.py</StartupFile>
+    <StartupFile>mainwindow.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="chat.py" />
     <Compile Include="clientPython.py" />
+    <Compile Include="clienutchat.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="database.py" />
     <Compile Include="login.py" />
     <Compile Include="mainwindow.py" />

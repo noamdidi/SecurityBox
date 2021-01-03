@@ -20,10 +20,30 @@ class MainWindow:
     def run(self):
         self.app.mainloop()
 
+class SecondWindow:
+    def __init__(self):
+        self.app = Tk()
+        self.app.title("Menu")
+        self.app.geometry("300x250")
+        self.label = Label(self.app, text="Welcome To SecurityBox", background='dodger blue')
+        self.label.place(x=95, y=40)
+        self.login = Button(self.app, text="Login",
+                            pady=5, padx=20, command=login, background='cyan2')
+        self.login.place(x=100, y=100)
+        self.register = Button(self.app, text="Register",
+                               pady=5, padx=14, command=register, background='cyan2')
+        self.register.place(x=100, y=150)
+        self.app.configure(bg='dodger blue')
+
+    def run(self):
+        self.app.mainloop()
+
 
 def login():
     loginTk = Login()
     loginTk.run()
+    
+
 
 
 def register():
@@ -31,5 +51,5 @@ def register():
     registerTk.run()
 
 
-#app = MainWindow()
-#app.run()
+app = MainWindow()
+app.run()

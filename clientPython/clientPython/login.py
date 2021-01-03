@@ -3,6 +3,7 @@ from tkinter import messagebox
 import bcrypt
 from database import Database
 
+
 db = Database()
 db.createTable()
 
@@ -42,6 +43,7 @@ class Login:
         try:
             if (db.validateData(data, inputData)):
                 messagebox.showinfo("Successful", "Login Was Successful")
+                SecondWindow.run()
             else:
                 messagebox.showerror("Error", "Wrong Credentials")
         except:
