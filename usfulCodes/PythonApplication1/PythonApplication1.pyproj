@@ -4,14 +4,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>174bf498-1370-44cc-b5c8-724521c207e7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>disconnectDevice.py</StartupFile>
+    <StartupFile>connectNet.py</StartupFile>
     <SearchPath>..\..\..\..\AppData\Local\Programs\Python\Python38-32\Lib\site-packages</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>PythonApplication1</Name>
     <RootNamespace>PythonApplication1</RootNamespace>
     <InterpreterId>Global|PythonCore|3.8</InterpreterId>
-    <TestFramework>Pytest</TestFramework>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>30:24:32:A8:EC:A3 30:24:32:A8:EC:A3 -i wlan0mon -v</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,10 +36,22 @@
     <Compile Include="EvilTwin.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EvilTwinDetector.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="findingNetworks.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="macAdr.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MITM-ARPSpoofing.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MITM.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="openPorts.py">

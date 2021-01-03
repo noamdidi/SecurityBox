@@ -1,59 +1,47 @@
-import winwifi
-import subprocess as S
-
-
-txt = S.check_output(["netsh", "wlan", "show", "networks"])
-print (txt.decode())
-
-#winwifi.WinWiFi.connect('Cohen1')
-
+import sys
+import subprocess
+from subprocess import *
 import os
+from scapy.all import *
+import netaddr
 
+def findNets():
+    print('list of all networks\n\n')
 
-class Finder:
-    def __init__(self, *args, **kwargs):
-        self.server_name = kwargs['server_name']
-        self.password = kwargs['password']
-        self.interface_name = kwargs['interface']
-        self.main_dict = {}
+    results = subprocess.check_output(["netsh", "wlan", "show", "network"])
 
-    def run(self):
-        command = """iwlist wlp2s0 scan | grep -ioE 'ssid:"(.*{}.*)'"""
-        result = os.popen(command.format(self.server_name))
-        result = list(result)
+    results = results.decode("ascii") # needed in python 3
+    results = results.replace("\r","")
+    ls = results.split("\n")
+    ls = ls[4:]
+    ssids = []
+    x = 0
+    retVal = ''
+    while x < len(ls):
+        if x % 5 == 0:
+            ssids.append(ls[x])
+        x += 1
+    print(ssids)
+    i = 0
+    while i < len(ssids):
+        if len(ssids[i].split(':')) > 1:
+            retVal += ssids[i].split(':')[1][1:]
+            retVal += '\n'
+        i += 1
+    return retVal
 
-        if "Device or resource busy" in result:
-                return None
-        else:
-            ssid_list = [item.lstrip('SSID:').strip('"\n') for item in result]
-            print("Successfully get ssids {}".format(str(ssid_list)))
-
-        for name in ssid_list:
-            try:
-                result = self.connection(name)
-            except Exception as exp:
-                print("Couldn't connect to name : {}. {}".format(name, exp))
-            else:
-                if result:
-                    print("Successfully connected to {}".format(name))
-
-    def connection(self, name):
-        try:
-            os.system("nmcli d wifi connect {} password {} iface {}".format(name,
-       self.password,
-       self.interface_name))
-        except:
-            raise
-        else:
-            return True
+def main():
+    nets = ''
+    netToConnect = 0
+    nets = findNets()
+    nets = nets.split('\n')
+    print(nets)
+    netToConnect = input("choose network by number: ")
+    sCommand = ["netsh","wlan","Connect",nets[int(netToConnect) - 1]]
+    SUInfo = subprocess.STARTUPINFO()
+    SUInfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
+    SUInfo.sShowWindow = SW_HIDE
+    Popen(sCommand,startupinfo=SUInfo)
 
 if __name__ == "__main__":
-    # Server_name is a case insensitive string, and/or regex pattern which demonstrates
-    # the name of targeted WIFI device or a unique part of it.
-    server_name = "Cohen1"
-    password = "0505580322"
-    interface_name = "wlp2s0" # i. e wlp2s0  
-    F = Finder(server_name=server_name,
-               password=password,
-               interface=interface_name)
-    F.run()
+    main()
