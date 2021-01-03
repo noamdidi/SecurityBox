@@ -2,7 +2,42 @@
 import socket 
 from mainwindow import MainWindow
 
+def findingNetworks():
+    print('list of all networks\n\n')
 
+    results = subprocess.check_output(["netsh", "wlan", "show", "network"])
+
+    results = results.decode("ascii") # needed in python 3
+    results = results.replace("\r","")
+    ls = results.split("\n")
+    ls = ls[4:]
+    ssids = []
+    x = 0
+    retVal = ''
+    while x < len(ls):
+        if x % 5 == 0:
+            ssids.append(ls[x])
+        x += 1
+    print(ssids)
+    i = 0
+    while i < len(ssids):
+        if len(ssids[i].split(':')) > 1:
+            retVal += ssids[i].split(':')[1][1:]
+            retVal += '\n'
+        i += 1
+    return retVal
+
+def networksMenu():
+    lnets = []
+    x = 1
+    print('Welcome!\n')
+    nets = findingNetworks()
+    lnets = nets.split('\n')
+    for i in lnets:
+        print(x, '.', i, '\n')
+    retNet = input("which network would you like to connect?\n")
+    return lnets[int(retNet) - 1] 
+    
 def Main(): 
 	# local host IP '127.0.0.1' 
 	host = '127.0.0.1'
@@ -15,6 +50,13 @@ def Main():
 	# connect to server on local computer 
 	s.connect((host,port)) 
 
+<<<<<<< HEAD
+	while True:
+		# message sent to server
+		net = networksMenu()
+		message = net 
+        s.send(message.encode('ascii'))
+=======
 	# message you send to server 
 	message = "hey its the client. im good"
 	#MainWin = MainWindow()
@@ -24,6 +66,7 @@ def Main():
 		# message sent to server 
 		s.send(message.encode('ascii')) 
 		
+>>>>>>> 0db45d5cd4aa1937532c9454bcbec477b042be59
 		# messaga received from server 
 		data = s.recv(1024) 
 

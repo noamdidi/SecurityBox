@@ -6,7 +6,7 @@ from scapy.all import *
 import netaddr
 
 def main():
-    print('test num. 1: list of all networks\n\n')
+    print('list of all networks\n\n')
 
     results = subprocess.check_output(["netsh", "wlan", "show", "network"])
 
@@ -16,11 +16,19 @@ def main():
     ls = ls[4:]
     ssids = []
     x = 0
+    retVal = ''
     while x < len(ls):
         if x % 5 == 0:
             ssids.append(ls[x])
         x += 1
     print(ssids)
+    i = 0
+    while i < len(ssids):
+        if len(ssids[i].split(':')) > 1:
+            retVal += ssids[i].split(':')[1][1:]
+            retVal += '\n'
+        i += 1
+    print(retVal)
 
 if __name__ == "__main__":
     main()
