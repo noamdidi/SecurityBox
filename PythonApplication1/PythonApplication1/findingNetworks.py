@@ -15,6 +15,7 @@ def main():
     ls = results.split("\n")
     ls = ls[4:]
     ssids = []
+    ssidsNumber = []
     x = 0
     retVal = ''
     while x < len(ls):

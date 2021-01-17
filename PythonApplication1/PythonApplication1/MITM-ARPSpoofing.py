@@ -5,6 +5,7 @@ import subprocess
 from subprocess import check_output
 from xml.etree.ElementTree import fromstring
 from ipaddress import IPv4Interface, IPv6Interface
+import optparse 
 
 def getNics() :
 

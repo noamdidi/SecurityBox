@@ -4,15 +4,15 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>174bf498-1370-44cc-b5c8-724521c207e7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>module1.py</StartupFile>
-    <SearchPath>..\..\..\..\AppData\Local\Programs\Python\Python38-32\Lib\site-packages</SearchPath>
+    <StartupFile>SSID-compare.py</StartupFile>
+    <SearchPath>..\..\..\AppData\Local\Programs\Python\Python38-32\Lib\site-packages</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>PythonApplication1</Name>
     <RootNamespace>PythonApplication1</RootNamespace>
     <InterpreterId>Global|PythonCore|3.8</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>'Intel(R) Dual Band Wireless-AC 3165'</CommandLineArguments>
+    <CommandLineArguments>Wi-Fi</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -31,6 +31,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="disconnectDevice.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DNS-spoofing-detection.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DNSspoofing.py">
@@ -70,6 +73,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PythonApplication1.py" />
+    <Compile Include="SSID-compare.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="test.py">
       <SubType>Code</SubType>
     </Compile>
