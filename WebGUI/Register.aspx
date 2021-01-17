@@ -21,6 +21,10 @@
             background-color: white;
         }
 
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
         /* Full-width input fields */
         input[type=text], input[type=password] {
             width: 100%;

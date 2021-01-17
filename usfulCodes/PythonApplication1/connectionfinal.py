@@ -36,7 +36,7 @@ def main():
     netToConnect = 0
     nets = findNets()
     nets = nets.split('\n')
-    print(nets)
+    print('#'.join(nets)[:-1])
     netToConnect = input("choose network by number: ")
     sCommand = ["netsh","wlan","Connect",nets[int(netToConnect) - 1]]
     SUInfo = subprocess.STARTUPINFO()
