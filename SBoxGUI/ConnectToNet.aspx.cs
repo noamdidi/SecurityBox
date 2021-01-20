@@ -81,9 +81,11 @@ namespace SBoxGUI
             //Append the HTML string to Placeholder.
             NetworksTable.Controls.Add(new Literal { Text = html.ToString() });
         }
+        
 
         protected void connnect_Click(object sender, EventArgs e)
         {
+            
             String net = "0";
             if (Request.Form["network"] != null)
             {

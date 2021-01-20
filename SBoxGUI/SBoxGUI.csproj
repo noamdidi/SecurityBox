@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\load.gif" />
     <Content Include="App_Data\users.mdf" />
     <Content Include="App_Data\users_log.ldf">
       <DependentUpon>users.mdf</DependentUpon>

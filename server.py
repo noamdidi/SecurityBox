@@ -102,8 +102,55 @@ def get_all_devices_data():
         count += 16
     for t in threads_list:
         t.join()
+    fake_data_strings = data_strings
+    for s in data_strings:
+        s = ""
     
-    return "".join(data_strings)[:-1]
+    #print("".join(fake_data_strings)[:-1])
+    return "".join(fake_data_strings)[:-1]
+
+
+def et_detector(x):
+    _size = len(x) 
+    repeated = [] 
+    for i in range(_size): 
+        k = i + 1
+        for j in range(k, _size): 
+            if x[i] == x[j] and x[i] not in repeated: 
+                repeated.append(x[i]) 
+    return repeated
+
+def et_results():
+    #print('list of all networks\n\n')
+
+    results = subprocess.check_output(["netsh", "wlan", "show", "network"])
+
+    results = results.decode("ascii") # needed in python 3
+    results = results.replace("\r","")
+    ls = results.split("\n")
+    ls = ls[4:]
+    ssids = []
+    ssidsNumber = []
+    x = 0
+    retVal = ''
+    while x < len(ls):
+        if x % 5 == 0:
+            ssids.append(ls[x])
+        x += 1
+    #print(ssids)
+    i = 0
+    while i < len(ssids):
+        if len(ssids[i].split(':')) > 1:
+            retVal += ssids[i].split(':')[1][1:]
+            retVal += '\n'
+        i += 1
+    detect = retVal.split('\n')
+    if len(et_detector(detect)):
+        #print("Warning: two networks by names", " | ".join(et_detector(detect)), ". Recommendation: Do not connect to any of them.")
+        return "Warning: two networks by names" + " | ".join(et_detector(detect)) + ". Recommendation: Do not connect to any of them."
+    else:
+        #print("Everything's OK")
+        return "Everything's OK"
 
 def server_manage(instruct, additional_param): # if there is no need in additonal parameter, let additonal_param = NULL
     #manage = {
@@ -124,14 +171,16 @@ def server_manage(instruct, additional_param): # if there is no need in additona
     #func()
     if instruct == 1:
         return '#'.join(get_nets())[:-1]
-    if instruct == 2:
+    elif instruct == 2:
         login_net(get_nets(), int(additional_param))
         return "logged successfully"
-    if instruct == 3:
+    elif instruct == 3:
         #start = time.time() OPTIONAL
         return get_all_devices_data()
         #end = time.time()   OPTIONAL
         #print(end - start)  OPTIONAL
+    elif instruct == 4:
+        return et_results()
 
 if __name__ == "__main__":
     

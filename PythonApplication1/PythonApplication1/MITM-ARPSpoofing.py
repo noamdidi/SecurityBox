@@ -5,9 +5,10 @@ import subprocess
 from subprocess import check_output
 from xml.etree.ElementTree import fromstring
 from ipaddress import IPv4Interface, IPv6Interface
-import optparse 
+import optparse
+import time
 
-def getNics() :
+def mitm_get_nics() :
 
     cmd = 'wmic.exe nicconfig where "IPEnabled  = True" get ipaddress,MACAddress,IPSubnet,DNSHostName,Caption,DefaultIPGateway /format:rawxml'
     xml_text = check_output(cmd, creationflags=8)
@@ -53,7 +54,7 @@ def getNics() :
 
     return nics
 
-def get_mac(ip):
+def mitm_get_mac(ip):
     """
     Returns the MAC address of `ip`, if it is unable to find it
     for some reason, throws `IndexError`
@@ -62,15 +63,15 @@ def get_mac(ip):
     result = srp(p, timeout=3, verbose=False)[0]
     return result[0][1].hwsrc
 
-def process(packet):
+def mitm_process(packet):
     # if the packet is an ARP packet
     if packet.haslayer(ARP):
         # if it is an ARP response (ARP reply)
-        print("ccc")
+        #print("ccc")
         if packet[ARP].op == 2:
             try:
                 # get the real MAC address of the sender
-                real_mac = get_mac(packet[ARP].psrc)
+                real_mac = mitm_get_mac(packet[ARP].psrc)
                 # get the MAC address from the packet sent to us
                 response_mac = packet[ARP].hwsrc
                 # if they're different, definetely there is an attack
@@ -83,19 +84,24 @@ def process(packet):
 
 if __name__ == "__main__":
     import sys
-    nics = getNics()
+    now = time.time()
+    nics = mitm_get_nics()
+    max_time = 15
+    start_time = time.time()  # remember when we started
+
     for nic in nics :
         for k,v in nic.items() :
             #print('%s : %s'%(k,v))
             if 'Wireless' in v:
                 wifiIface = v
-        
     wifiIface = wifiIface[11:]
     try:
         iface = wifiIface
-        print(iface)
+        #print(iface)
     except IndexError:
         print('e')
         iface = conf.iface
-
-    sniff(store=False, prn=process, iface=iface)
+    while (time.time() - start_time) < max_time:
+        sniff(store=False, prn=mitm_process, iface=iface)
+    later = time.time()
+    print(later-now)

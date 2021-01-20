@@ -72,6 +72,27 @@
             background-color: #f1f1f1;
             text-align: center;
         }
+
+        .loader {  
+                    border: 16px solid #f3f3f3;  
+                    border-radius: 50%;  
+                    border-top: 16px solid #95CE67;  
+                    border-bottom: 16px solid #8DBF8B;  
+                    width: 120px;  
+                    height: 120px;  
+                    -webkit-animation: spin 2s linear infinite;  
+                    animation: spin 2s linear infinite;  
+                }  
+  
+        @-webkit-keyframes spin {  
+            0% { -webkit-transform: rotate(0deg); }  
+            100% { -webkit-transform: rotate(360deg); }  
+        }  
+  
+        @keyframes spin {  
+            0% { transform: rotate(0deg); }  
+            100% { transform: rotate(360deg); }  
+        }  
     </style>
 </head>
 <body>
@@ -82,6 +103,7 @@
             <h5 style="color:red; text-align:center" >Note: connecting might take a while, we need to get all the information on the network</h5>
             <hr />
             <asp:Button ID="connect" class="btn" runat="server" Text="Connect" OnClick="connnect_Click" />
+          
         </div>
     </form>
 </body>
