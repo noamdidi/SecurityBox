@@ -36,7 +36,7 @@ namespace SBoxGUI
             for (int i = 0; i < k; i++)
                 recv_msg += Convert.ToChar(bb[i]);
 
-            Console.WriteLine(recv_msg);
+            //Console.WriteLine(recv_msg);
             string[] headers = {"#", "IP Number", "Mac Address", "Manifacturer"};
             string data = recv_msg;
             string[] data_org = data.Split('#');
@@ -83,7 +83,45 @@ namespace SBoxGUI
             html.Append("</table>");
 
             //Append the HTML string to Placeholder.
-            PlaceHolder1.Controls.Add(new Literal { Text = html.ToString() });
+            devices_tbl.Controls.Add(new Literal { Text = html.ToString() });
+        }
+
+        protected void run_et_Click(object sender, EventArgs e)
+        {
+            StringBuilder wfr_txt = new StringBuilder();
+            wfr_txt.Append("<th style=\"background-color:lightgray\">");
+            wfr_txt.Append("Waiting for Results...");
+            wfr_txt.Append("</th>");
+            et_res.Controls.Add(new Literal { Text = wfr_txt.ToString() });
+            
+            TcpClient tcpclnt = new TcpClient();
+            tcpclnt.Connect("127.0.0.1", 447);
+
+            String str = "4#0";
+            Stream stm = tcpclnt.GetStream();
+
+            ASCIIEncoding asen = new ASCIIEncoding();
+            byte[] ba = asen.GetBytes(str);
+            stm.Write(ba, 0, ba.Length);
+            byte[] bb = new byte[1000];
+            int k = stm.Read(bb, 0, 1000);
+            string recv_msg = "";
+
+            for (int i = 0; i < k; i++)
+                recv_msg += Convert.ToChar(bb[i]);
+
+            StringBuilder html = new StringBuilder();
+            if (recv_msg.Contains("OK"))
+            {
+                html.Append("<th style=\"background-color:springgreen\">");
+            }
+            else
+            {
+                html.Append("<th style=\"background-color:red\">");
+            }
+            html.Append(recv_msg);
+            html.Append("</th");
+            et_res.Controls.Add(new Literal { Text = html.ToString() });
         }
     }
 }

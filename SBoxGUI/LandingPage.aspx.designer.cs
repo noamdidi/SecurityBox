@@ -24,6 +24,24 @@ namespace SBoxGUI
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// run_et control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button run_et;
+
+        /// <summary>
+        /// et_res control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder et_res;
+
+        /// <summary>
         /// user control.
         /// </summary>
         /// <remarks>
@@ -33,12 +51,12 @@ namespace SBoxGUI
         protected global::System.Web.UI.WebControls.Label user;
 
         /// <summary>
-        /// PlaceHolder1 control.
+        /// devices_tbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        protected global::System.Web.UI.WebControls.PlaceHolder devices_tbl;
     }
 }

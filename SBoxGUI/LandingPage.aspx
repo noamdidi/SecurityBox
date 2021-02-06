@@ -54,7 +54,7 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 50%;
             opacity: 0.9;
         }
 
@@ -72,16 +72,50 @@
             background-color: #f1f1f1;
             text-align: center;
         }
+
+        .loader {  
+                    border: 16px solid #f3f3f3;  
+                    border-radius: 100%;  
+                    border-top: 16px solid #95CE67;  
+                    border-bottom: 16px solid #8DBF8B;  
+                    width: 120px;  
+                    height: 120px;  
+                    -webkit-animation: spin 2s linear infinite;  
+                    animation: spin 2s linear infinite;  
+                }  
+  
+        @-webkit-keyframes spin {  
+            0% { -webkit-transform: rotate(0deg); }  
+            100% { -webkit-transform: rotate(360deg); }  
+        }  
+  
+        @keyframes spin {  
+            0% { transform: rotate(0deg); }  
+            100% { transform: rotate(360deg); }  
+        }  
     </style>
 </head>
+    
 <body>
     <form id="form1" runat="server">
         <div class="container">
+            <h1>Hooray! You have successfully joined the network!</h1>
+            <br />
+
+            <h4>Run Evil Twin Detection:</h4>
+            <table class="center" border = '1' width="50%">
+                <tr>
+                    <th><asp:Button ID="run_et" class="btn" runat="server" Text="Run" OnClick="run_et_Click" /></th>
+                    <asp:PlaceHolder ID="et_res" runat="server"></asp:PlaceHolder>
+                </tr>
+            </table>
+
             <h1 style="text-align:center">Devices</h1>
             <asp:Label ID="user" runat="server"></asp:Label>
             <br />
-            <asp:PlaceHolder ID="PlaceHolder1" runat="server" />
+            <asp:PlaceHolder ID="devices_tbl" runat="server" />
         </div>
+        
     </form>
 </body>
 </html>
