@@ -66,7 +66,6 @@ def process(packet):
     # if the packet is an ARP packet
     if packet.haslayer(ARP):
         # if it is an ARP response (ARP reply)
-        print("ccc")
         if packet[ARP].op == 2:
             try:
                 # get the real MAC address of the sender

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>174bf498-1370-44cc-b5c8-724521c207e7</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SSID-compare.py</StartupFile>
+    <StartupFile>passwordCorrectness.py</StartupFile>
     <SearchPath>..\..\..\AppData\Local\Programs\Python\Python38-32\Lib\site-packages</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -28,6 +28,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="connectNet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DHCP-spoofing-attak.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DHCP-spoofing.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="disconnectDevice.py">
@@ -69,11 +75,17 @@
     <Compile Include="openPorts.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="passwordCorrectness.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="pingsweeping.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PythonApplication1.py" />
     <Compile Include="SSID-compare.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SYN-FLOOD-Detection.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="test.py">
