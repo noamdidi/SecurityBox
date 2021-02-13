@@ -1,7 +1,7 @@
 from optparse import OptionParser
 import time
 from scapy.all import *
-
+import os
 
 diction = {}
 time_diction = {}
@@ -93,7 +93,22 @@ def store_detect(pkt):
                 print ('DETECT: REQ: %s NAM: %s SRC: %s:%s DST: %s:%s %s' % (str(l.id) , l.qd.qname, ip.dst, str(ip[UDP].dport), ip.src, str(ip[UDP].sport), answer))
 
 
+
 def main():
+    ttl = 0
+    clear = lambda: os.system('cls')
+    while True:
+        i = input("which test do you want to do?\n1.short(5 min)\n2.long(until the system finds a gap)\n\n")
+        if i == '1':
+            ttl = 15
+            break
+        elif i == '2':
+            ttl = None
+            break
+        else:
+            print("\nc'mon put 1 or 2 don't be asshole\n")
+            clear()
+
     parser = OptionParser()
     parser.add_option("-i", dest="iface")
     parser.add_option("-t", dest="tim")
@@ -109,9 +124,10 @@ def main():
         interval = 5
 
     if (interface):
-        sniff(iface= interface,prn= got_packet_callback, filter="port 53", timeout=300)
+        sniff(iface= interface,prn= got_packet_callback, filter="port 53", timeout=ttl)
     else:
-        sniff(prn= got_packet_callback, filter="port 53", timeout=300)
+        sniff(prn= got_packet_callback, filter="port 53", timeout=ttl)
+
 
 
 if __name__ == "__main__":
