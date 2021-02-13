@@ -2,10 +2,27 @@ from optparse import OptionParser
 import time
 from scapy.all import *
 
+
 diction = {}
 time_diction = {}
 to_be_deleted_from_time_diction = set()
 interval = 5
+flag = 0
+RUN_TIME = 5
+
+def countdown(t): 
+    
+    while t: 
+        mins, secs = divmod(t, 60) 
+        timer = '{:02d}:{:02d}'.format(mins, secs) 
+        print(timer, end="\r") 
+        time.sleep(1) 
+        t -= 1
+      
+    print('Fire in the hole!!') 
+  
+  
+
 
 def got_packet_callback(pkt):
 
@@ -72,6 +89,7 @@ def store_detect(pkt):
                         answer = ' AN'+str(i)+": " + s[4]
                         i+=1
                 answer = answer[1:]
+                flag = 1
                 print ('DETECT: REQ: %s NAM: %s SRC: %s:%s DST: %s:%s %s' % (str(l.id) , l.qd.qname, ip.dst, str(ip[UDP].dport), ip.src, str(ip[UDP].sport), answer))
 
 
@@ -91,9 +109,9 @@ def main():
         interval = 5
 
     if (interface):
-        sniff(iface= interface,prn= got_packet_callback, filter="port 53")
+        sniff(iface= interface,prn= got_packet_callback, filter="port 53", timeout=300)
     else:
-        sniff(prn= got_packet_callback, filter="port 53")
+        sniff(prn= got_packet_callback, filter="port 53", timeout=300)
 
 
 if __name__ == "__main__":
