@@ -76,18 +76,14 @@ def mitm_process(packet):
                 response_mac = packet[ARP].hwsrc
                 # if they're different, definetely there is an attack
                 if real_mac != response_mac:
-                    print(f"[!] You are under attack, REAL-MAC: {real_mac.upper()}, FAKE-MAC: {response_mac.upper()}")
+                    return "[!] You are under attack, REAL-MAC: {" + real_mac.upper() + "}, FAKE-MAC: {" + response_mac.upper() + "}"
             except IndexError:
                 # unable to find the real mac
                 # may be a fake IP or firewall is blocking packets
                 pass
 
-if __name__ == "__main__":
-    import sys
-    now = time.time()
+def mitm_detector():
     nics = mitm_get_nics()
-    max_time = 15
-    start_time = time.time()  # remember when we started
 
     for nic in nics :
         for k,v in nic.items() :
@@ -101,7 +97,9 @@ if __name__ == "__main__":
     except IndexError:
         print('e')
         iface = conf.iface
-    while (time.time() - start_time) < max_time:
-        sniff(store=False, prn=mitm_process, iface=iface)
-    later = time.time()
-    print(later-now)
+
+    return sniff(store=False, prn=mitm_process, iface=iface, timeout=5)
+
+if __name__ == "__main__":
+
+

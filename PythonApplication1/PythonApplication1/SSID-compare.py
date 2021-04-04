@@ -40,7 +40,7 @@ def et_results():
         i += 1
     detect = retVal.split('\n')
     if len(et_detector(detect)):
-        return "Warning: two networks by names", detector(detect), ". Recommendation: Do not connect to any of them.\n"
+        return "Warning: two networks by names" + et_detector(detect) + ". Recommendation: Do not connect to any of them.\n"
     else:
         return "Everything's OK"
 

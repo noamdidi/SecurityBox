@@ -73,9 +73,11 @@
       <DependentUpon>users.mdf</DependentUpon>
     </Content>
     <Content Include="ConnectToNet.aspx" />
+    <Content Include="App_Data\favicon.ico" />
     <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="SecurityBox.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

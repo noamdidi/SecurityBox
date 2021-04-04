@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title>Security Box</title>
+    <link rel="shortcut icon" type="image/ico" href="App_Data/favicon.ico"/>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -93,6 +95,29 @@
             0% { transform: rotate(0deg); }  
             100% { transform: rotate(360deg); }  
         }  
+
+        #table_desg {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #table_desg td, #table_desg th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #table_desg tr:nth-child(even){background-color: #f2f2f2;}
+
+        #table_desg tr:hover {background-color: #ddd;}
+
+        #table_desg th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body>

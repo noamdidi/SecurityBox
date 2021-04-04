@@ -48,17 +48,32 @@
 
         /* Set a style for the submit button */
         .btn {
-            background-color: #16B21D;
+            background-color: #06C258;
             color: white;
             padding: 16px 20px;
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 50%;
+            width: 100%;
             opacity: 0.9;
         }
 
-            .registerbtn:hover {
+            .btn:hover {
+                opacity: 1;
+            }
+
+        .menu_btn {
+            background-color: #29AB87;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+            .menu_btn:hover {
                 opacity: 1;
             }
 
@@ -73,46 +88,92 @@
             text-align: center;
         }
 
-        .loader {  
-                    border: 16px solid #f3f3f3;  
-                    border-radius: 100%;  
-                    border-top: 16px solid #95CE67;  
-                    border-bottom: 16px solid #8DBF8B;  
-                    width: 120px;  
-                    height: 120px;  
-                    -webkit-animation: spin 2s linear infinite;  
-                    animation: spin 2s linear infinite;  
-                }  
-  
-        @-webkit-keyframes spin {  
-            0% { -webkit-transform: rotate(0deg); }  
-            100% { -webkit-transform: rotate(360deg); }  
-        }  
-  
-        @keyframes spin {  
-            0% { transform: rotate(0deg); }  
-            100% { transform: rotate(360deg); }  
-        }  
+        .table_desg {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table_desg td, #table_desg th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table_desg tr:nth-child(even){background-color: #f2f2f2;}
+
+        .table_desg tr:hover {background-color: #ddd;}
+
+        .table_desg th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+
+        #general_tbl {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #general_tbl td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #general_tbl tr:nth-child(even){background-color: #f2f2f2;}
+
+        #general_tbl tr:hover {background-color: #ddd;}
+
+        #general_tbl th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
     
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <h1>Hooray! You have successfully joined the network!</h1>
+            <img src="SecurityBox.png" alt="Logo" style="width:200px;height:100px;">
+            <br /><br /><br />
+            <table id="menu" width="100%">
+                <tr>
+                    <th><asp:Button ID="find_devices_1" class="menu_btn" runat="server" Text="Find Devices" OnClick="find_devices_1_Click" /></th>
+                    <th><asp:Button ID="scans"          class="menu_btn" runat="server" Text="Scans"        OnClick="scans_Click" /></th>
+                    <th><asp:Button ID="user_info"      class="menu_btn" runat="server" Text="User Info"    OnClick="user_info_Click" /></th>
+                    <th><asp:Button ID="logs"           class="menu_btn" runat="server" Text="Logs"         OnClick="logs_Click" /></th>
+                    <th><asp:Button ID="help"           class="menu_btn" runat="server" Text="Help"         OnClick="help_Click" /></th>
+                    <th><asp:Button ID="contact"        class="menu_btn" runat="server" Text="Contact"      OnClick="contact_Click" /></th>
+                </tr>
+            </table>
+            <h1 style="vertical-align:central">Hooray! You have successfully joined the network!</h1>
             <br />
 
-            <h4>Run Evil Twin Detection:</h4>
-            <table class="center" border = '1' width="50%">
+            <table class="table_desg">
                 <tr>
-                    <th><asp:Button ID="run_et" class="btn" runat="server" Text="Run" OnClick="run_et_Click" /></th>
+                    <td>EVIL TWIN</td>
+                    <td><asp:Button ID="run_et" class="btn" runat="server" Text="Detect" OnClick="run_et_Click" /></td>
+                    <asp:PlaceHolder ID="waiting_for_results" runat="server"></asp:PlaceHolder>
                     <asp:PlaceHolder ID="et_res" runat="server"></asp:PlaceHolder>
+                
+                </tr>
+                <tr>
+                    <%--<td>MAN IN THE MIDDLE</td>
+                    <td><asp:Button ID="run_mitm" class="btn" runat="server" Text="Detect" OnClick="run_mitm_Click" /></td>
+                    <asp:PlaceHolder ID="mitm_res" runat="server"></asp:PlaceHolder>--%>
                 </tr>
             </table>
 
             <h1 style="text-align:center">Devices</h1>
             <asp:Label ID="user" runat="server"></asp:Label>
             <br />
+            <asp:Button ID="find_devices" class="btn" runat="server" Text="Find Devices" OnClick="find_devices_Click" />
             <asp:PlaceHolder ID="devices_tbl" runat="server" />
         </div>
         

@@ -45,7 +45,7 @@ namespace SBoxGUI
             StringBuilder html = new StringBuilder();
 
             //Table start.
-            html.Append("<table class=\"center\" border = '1'>");
+            html.Append("<table id=\"table_desg\">");
 
             //Building the Header row.
             html.Append("<tr>");
