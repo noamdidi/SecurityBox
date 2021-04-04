@@ -121,7 +121,7 @@ def lowerAndUpperAndNumberAndSymbol(passwordStr, passwordLen):
         print("374TN years")
 
 def main():
-    password = '#@#$!AEfw1f@#$&'
+    password = '0505580322'
     passwordLenght = len(password)
     FirstRules = [lambda password: all(x.isupper() for x in password), # must have at least one uppercase
         lambda password: all(x.islower() for x in password) # must have at least one lowercase
@@ -133,7 +133,7 @@ def main():
     ThirdRules = [lambda password: any(x.isupper() for x in password), # must have at least one uppercase
             lambda password: any(x.islower() for x in password),  # must have at least one lowercase
             lambda password: any(x.isdigit() for x in password), # must have at least one digit
-            lambda password: any(i in string.punctuation for i in password)
+            lambda password: any(i in string.punctuation for i in password) # must have at least one symbol
             ]
 
     if passwordLenght < 5:
