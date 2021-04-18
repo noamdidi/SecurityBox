@@ -74,9 +74,13 @@
     </Content>
     <Content Include="ConnectToNet.aspx" />
     <Content Include="App_Data\favicon.ico" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Devices.aspx" />
+    <Content Include="Help.aspx" />
     <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="Scans.aspx" />
     <Content Include="SecurityBox.png" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -87,6 +91,27 @@
     </Compile>
     <Compile Include="ConnectToNet.aspx.designer.cs">
       <DependentUpon>ConnectToNet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Devices.aspx.cs">
+      <DependentUpon>Devices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Devices.aspx.designer.cs">
+      <DependentUpon>Devices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandingPage.aspx.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
@@ -109,6 +134,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Scans.aspx.cs">
+      <DependentUpon>Scans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Scans.aspx.designer.cs">
+      <DependentUpon>Scans.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

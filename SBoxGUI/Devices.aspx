@@ -1,9 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.aspx.cs" Inherits="SBoxGUI.LandingPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Devices.aspx.cs" Inherits="SBoxGUI.devices" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <title></title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -87,31 +88,7 @@
             background-color: #f1f1f1;
             text-align: center;
         }
-
-        .table_desg {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .table_desg td, #table_desg th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        .table_desg tr:nth-child(even){background-color: #f2f2f2;}
-
-        .table_desg tr:hover {background-color: #ddd;}
-
-        .table_desg th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
         
-
         #general_tbl {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -136,24 +113,14 @@
         }
     </style>
 </head>
-    
 <body>
     <form id="form1" runat="server">
         <div class="container">
-
-            <img src="SecurityBox.png" alt="Logo" style="width:200px;height:100px;">
-            <br /><br /><br />
-            <table id="menu" width="100%">
-                <tr>
-                    <th><asp:Button ID="find_devices_1" class="menu_btn" runat="server" Text="Find Devices" OnClick="find_devices_redirect_Click" /></th>
-                    <th><asp:Button ID="scans"          class="menu_btn" runat="server" Text="Scans"        OnClick="scans_redirect_Click" /></th>
-                    <th><asp:Button ID="help"           class="menu_btn" runat="server" Text="Help"         OnClick="help_redirect_Click" /></th>
-                    <th><asp:Button ID="contact"        class="menu_btn" runat="server" Text="Contact"      OnClick="contact_redirect_Click" /></th>
-                </tr>
-            </table>
-            <h1 style="vertical-align:central">Hooray! You have successfully joined the network!</h1>
+            <h1 style="text-align:center">Devices</h1>
+            <asp:Label ID="user" runat="server"></asp:Label>
             <br />
-
+            <asp:Button ID="find_devices" class="btn" runat="server" Text="Find Devices" OnClick="find_devices_Click" />
+            <asp:PlaceHolder ID="devices_tbl" runat="server" />
         </div>
         
     </form>

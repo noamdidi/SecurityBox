@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.aspx.cs" Inherits="SBoxGUI.LandingPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Scans.aspx.cs" Inherits="SBoxGUI.Scans" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <style>
         body {
@@ -136,26 +137,59 @@
         }
     </style>
 </head>
-    
 <body>
     <form id="form1" runat="server">
         <div class="container">
-
-            <img src="SecurityBox.png" alt="Logo" style="width:200px;height:100px;">
-            <br /><br /><br />
-            <table id="menu" width="100%">
+            <table class="table_desg">
                 <tr>
-                    <th><asp:Button ID="find_devices_1" class="menu_btn" runat="server" Text="Find Devices" OnClick="find_devices_redirect_Click" /></th>
-                    <th><asp:Button ID="scans"          class="menu_btn" runat="server" Text="Scans"        OnClick="scans_redirect_Click" /></th>
-                    <th><asp:Button ID="help"           class="menu_btn" runat="server" Text="Help"         OnClick="help_redirect_Click" /></th>
-                    <th><asp:Button ID="contact"        class="menu_btn" runat="server" Text="Contact"      OnClick="contact_redirect_Click" /></th>
+                    <td>EVIL TWIN</td>
+                    <td width="500px"><asp:Button ID="run_et" class="btn" runat="server" Text="Detect" OnClick="run_et_Click" /></td>
+                    <asp:PlaceHolder ID="et_wfr" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="et_res" runat="server"></asp:PlaceHolder>
+                
                 </tr>
             </table>
-            <h1 style="vertical-align:central">Hooray! You have successfully joined the network!</h1>
             <br />
 
+            <table class="table_desg">
+                <tr>
+                    <td>MAN IN THE MIDDLE</td>
+                    <td width="500px"><asp:Button ID="run_mitm" class="btn" runat="server" Text="Detect" OnClick="run_mitm_Click" /></td>
+                    <asp:PlaceHolder ID="mitm_wfr" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="mitm_res" runat="server"></asp:PlaceHolder>
+                </tr>
+            </table>
+            <br />
+
+            <table class="table_desg">
+                <tr>
+                    <td>DNS SPOOFING</td>
+                    <td width="500px"><asp:Button ID="run_dns" class="btn" runat="server" Text="Detect" OnClick="run_dns_Click" /></td>
+                    <asp:PlaceHolder ID="dns_wfr" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="dns_res" runat="server"></asp:PlaceHolder>
+                </tr>
+            </table>
+            <br />
+
+            <table class="table_desg">
+                <tr>
+                    <td>DHCP SPOOFING</td>
+                    <td width="500px"><asp:Button ID="run_dhcp" class="btn" runat="server" Text="Detect" OnClick="run_dhcp_Click" /></td>
+                    <asp:PlaceHolder ID="dhcp_wfr" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="dhcp_res" runat="server"></asp:PlaceHolder>
+                </tr>
+            </table>
+            <br />
+
+            <table class="table_desg">
+                <tr>
+                    <td>ARP SPOOFING</td>
+                    <td width="500px"><asp:Button ID="run_arp" class="btn" runat="server" Text="Detect" OnClick="run_arp_Click" /></td>
+                    <asp:PlaceHolder ID="arp_wfr" runat="server"></asp:PlaceHolder>
+                    <asp:PlaceHolder ID="arp_res" runat="server"></asp:PlaceHolder>
+                </tr>
+            </table>
         </div>
-        
     </form>
 </body>
 </html>

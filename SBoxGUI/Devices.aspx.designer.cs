@@ -11,7 +11,7 @@ namespace SBoxGUI
 {
 
 
-    public partial class LandingPage
+    public partial class devices
     {
 
         /// <summary>
@@ -24,39 +24,30 @@ namespace SBoxGUI
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// find_devices_1 control.
+        /// user control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button find_devices_1;
+        protected global::System.Web.UI.WebControls.Label user;
 
         /// <summary>
-        /// scans control.
+        /// find_devices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button scans;
+        protected global::System.Web.UI.WebControls.Button find_devices;
 
         /// <summary>
-        /// help control.
+        /// devices_tbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button help;
-
-        /// <summary>
-        /// contact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button contact;
+        protected global::System.Web.UI.WebControls.PlaceHolder devices_tbl;
     }
 }

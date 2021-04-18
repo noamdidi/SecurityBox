@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LandingPage.aspx.cs" Inherits="SBoxGUI.LandingPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Help.aspx.cs" Inherits="SBoxGUI.Help" %>
 
 <!DOCTYPE html>
 
@@ -136,26 +136,45 @@
         }
     </style>
 </head>
-    
 <body>
     <form id="form1" runat="server">
         <div class="container">
-
-            <img src="SecurityBox.png" alt="Logo" style="width:200px;height:100px;">
-            <br /><br /><br />
-            <table id="menu" width="100%">
-                <tr>
-                    <th><asp:Button ID="find_devices_1" class="menu_btn" runat="server" Text="Find Devices" OnClick="find_devices_redirect_Click" /></th>
-                    <th><asp:Button ID="scans"          class="menu_btn" runat="server" Text="Scans"        OnClick="scans_redirect_Click" /></th>
-                    <th><asp:Button ID="help"           class="menu_btn" runat="server" Text="Help"         OnClick="help_redirect_Click" /></th>
-                    <th><asp:Button ID="contact"        class="menu_btn" runat="server" Text="Contact"      OnClick="contact_redirect_Click" /></th>
-                </tr>
-            </table>
-            <h1 style="vertical-align:central">Hooray! You have successfully joined the network!</h1>
+            <h3><b>Evil Twin</b></h3>
+            <h5>
+                An evil twin is a fraudulent Wi-Fi access point that appears to be legitimate but is set up to eavesdrop on wireless communications. The evil twin is the wireless LAN equivalent of the phishing scam.
+                This type of attack may be used to steal the passwords of unsuspecting users, either by monitoring their connections or by phishing, which involves setting up a fraudulent web site and luring people there.
+            </h5>
+            <h5>You can learn more about this attack here:</h5><a style=href="https://en.wikipedia.org/wiki/Evil_twin_(wireless_networks)">evil twin attack</a>
             <br />
-
+            <h3><b>Man in the Middle</b></h3>
+            <h5>
+                Man in the Middle is a cyberattack where the attacker secretly relays and possibly alters the communications between two parties who believe that they are directly communicating with each other. 
+                One example of a MITM attack is active eavesdropping, in which the attacker makes independent connections with the victims and relays messages between them to make them believe they are talking directly to each other over a private connection, when in fact the entire conversation is controlled by the attacker.
+            </h5>
+            <h5>You can learn more about this attack here:</h5><a style=href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man in the middle attack</a>
+            <br />
+            <h3><b>DNS Spoofing</b></h3>
+            <h5>
+                DNS spoofing is a form of computer security hacking in which corrupt Domain Name System data is introduced into the DNS resolver's cache, causing the name server to return an incorrect result record, e.g. an IP address. 
+                This results in traffic being diverted to the attacker's computer (or any other computer).
+            </h5>
+            <h5>You can learn more about this attack here:</h5><a style=href="https://en.wikipedia.org/wiki/DNS_spoofing">DNS spoofing attack</a>
+            <br />
+            <h3><b>DHCP Spoofing</b></h3>
+            <h5>
+                DHCP spoofing occurs when an attacker attempts to respond to DHCP requests and trying to list themselves (spoofs) as the default gateway or DNS server, hence, initiating a man in the middle attack.
+            </h5>
+            <h5>You can learn more about this attack here:</h5><a style=href="https://he.wikipedia.org/wiki/%D7%94%D7%95%D7%A0%D7%90%D7%AA_DHCP">DHCP spoofing attack</a>
+            <br />
+            <h3><b>ARP Spoofing</b></h3>
+            <h5>
+                ARP spoofing is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) messages onto a local area network. 
+                Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as the default gateway, causing any traffic meant for that IP address to be sent to the attacker instead.
+            </h5>
+            <h5>You can learn more about this attack here:</h5><a style=href="https://en.wikipedia.org/wiki/ARP_spoofing">ARP spoofing attack</a>
+            <br />
+            
         </div>
-        
     </form>
 </body>
 </html>
